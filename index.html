@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to Logic Gates and Boolean Logic</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050816;
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    min-height: 360px;
+    padding: 50px 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background:
+        radial-gradient(circle at 20% 20%, #152b63 0%, transparent 35%),
+        radial-gradient(circle at 80% 80%, #38115b 0%, transparent 35%),
+        linear-gradient(135deg, #050816, #10152d, #080b1b);
+    border: 2px solid #283a70;
+    border-radius: 18px;
+}
+
+/* Digital circuit background */
+.banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 229, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.08) 1px, transparent 1px);
+    background-size: 35px 35px;
+    mask-image: linear-gradient(to bottom, transparent, black, transparent);
+    pointer-events: none;
+}
+
+/* Glowing circles */
+.glow {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.45;
+    animation: float 6s ease-in-out infinite alternate;
+}
+
+.glow.one {
+    background: #00e5ff;
+    top: -100px;
+    left: -60px;
+}
+
+.glow.two {
+    background: #b721ff;
+    bottom: -100px;
+    right: -50px;
+    animation-delay: 2s;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+.small-title {
+    color: #a8c7ff;
+    font-size: clamp(12px, 2vw, 16px);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    animation: fadeIn 1.2s ease;
+}
+
+.main-title {
+    font-size: clamp(28px, 6vw, 65px);
+    font-weight: 900;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(
+        90deg,
+        #00f5ff,
+        #ffffff,
+        #a855f7,
+        #ff4ecd,
+        #00f5ff
+    );
+    background-size: 300% auto;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: colourFlow 5s linear infinite;
+    filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.25));
+}
+
+.subtitle {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 10px 24px;
+    border: 1px solid rgba(0, 229, 255, 0.6);
+    border-radius: 50px;
+    color: #d8faff;
+    font-size: clamp(11px, 1.7vw, 15px);
+    letter-spacing: 4px;
+    background: rgba(0, 229, 255, 0.07);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.12);
+}
+
+/* Decorative lights */
+.spark {
+    position: absolute;
+    color: #00f5ff;
+    font-size: 25px;
+    text-shadow: 0 0 12px currentColor;
+    animation: blink 2s infinite alternate;
+}
+
+.spark.s1 { top: 20%; left: 10%; }
+.spark.s2 { top: 25%; right: 12%; color: #ff4ecd; }
+.spark.s3 { bottom: 18%; left: 18%; color: #a855f7; }
+.spark.s4 { bottom: 20%; right: 18%; }
+
+.binary {
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    color: rgba(0, 245, 255, 0.25);
+    font-family: monospace;
+    font-size: 12px;
+    letter-spacing: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@keyframes colourFlow {
+    0%   { background-position: 0% center; }
+    100% { background-position: 300% center; }
+}
+
+@keyframes blink {
+    from { opacity: 0.3; transform: scale(0.8); }
+    to   { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes float {
+    from { transform: translate(0, 0); }
+    to   { transform: translate(40px, 30px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 500px) {
+    .banner {
+        min-height: 300px;
+        padding: 40px 12px;
+    }
+
+    .main-title {
+        letter-spacing: 1px;
+    }
+
+    .small-title {
+        letter-spacing: 3px;
+    }
+
+    .subtitle {
+        letter-spacing: 2px;
+        padding: 9px 15px;
+    }
+
+    .spark {
+        font-size: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="banner">
+
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
+    <span class="spark s1">✦</span>
+    <span class="spark s2">✧</span>
+    <span class="spark s3">✧</span>
+    <span class="spark s4">✦</span>
+
+    <div class="content">
+        <div class="small-title">Explore the Digital Universe</div>
+
+        <h1 class="main-title">
+            Introduction to<br>
+            Logic Gates<br>
+            &amp; Boolean Logic
+        </h1>
+
+        <div class="subtitle">
+            THINK • LOGIC • COMPUTE
+        </div>
+    </div>
+
+    <div class="binary">
+        1010 &nbsp; 0101 &nbsp; 1100 &nbsp; 0011 &nbsp;
+        1011 &nbsp; 0110 &nbsp; 1001 &nbsp; 0100
+    </div>
+
+</div>
+
+</body>
+</html>
